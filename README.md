@@ -4,8 +4,8 @@ What this repo try to explain
 - How to call python distribution in golang
   
 
-  Reference doc about python in go
-  https://www.datadoghq.com/blog/engineering/cgo-and-python/
+Reference doc about python in go
+https://www.datadoghq.com/blog/engineering/cgo-and-python/
 
 #### 1. install pkg-config
 
