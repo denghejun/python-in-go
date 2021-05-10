@@ -42,7 +42,12 @@ PYTHONPATH=. ./main
 ```
 python3 setup.py sdist
 ```
-##### 2. specify the python distribution path while runing go exec file
+##### 2. Extract distribution
+```
+tar -xzvf dist/foo-1.0.0.tar.gz -C dist 
+```
+
+##### 3. specify the python distribution path while runing go exec file
 ```
 PYTHONPATH=./dist/foo-1.0.0 ./main 
 ```
