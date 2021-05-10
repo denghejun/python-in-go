@@ -33,7 +33,7 @@ PYTHONPATH=. ./main
 
 
 
-#### 5. Others
+#### 5. A way to run python3 distribution
 Reference doc about python in go
 https://www.datadoghq.com/blog/engineering/cgo-and-python/
 ##### 1. build python distribution
