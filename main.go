@@ -2,7 +2,10 @@
 // main.go
 package main
 
-import "github.com/sbinet/go-python"
+import (
+	"fmt"
+	"github.com/sbinet/go-python"
+)
 
 func main() {
 	python.Initialize()
@@ -23,5 +26,7 @@ func main() {
 	name := python.PyString_FromString("Tom")
 	python.PyTuple_SetItem(args, 0, name)
 
-	helloFunc.Call(args, python.PyDict_New())
+	// get the return value
+	result := helloFunc.Call(args, python.PyDict_New())
+	fmt.Println("The result from Python is : ", result)
 }
