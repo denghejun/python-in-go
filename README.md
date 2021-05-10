@@ -31,6 +31,8 @@ PYTHONPATH=. ./main
 
 
 #### 5. Others
+Reference doc about python in go
+https://www.datadoghq.com/blog/engineering/cgo-and-python/
 ##### 1. build python distribution
 ```
 python3 setup.py sdist
@@ -39,4 +41,6 @@ python3 setup.py sdist
 ```
 PYTHONPATH=./dist/foo-1.0.0 ./main 
 ```
+
+
 
