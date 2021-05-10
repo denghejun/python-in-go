@@ -1,4 +1,7 @@
 ## How to embed python in golang (MacOS as an example)
+What this repo try to explain
+- How to call python code in golang
+- How to call python distribution in golang
 
 #### 1. install pkg-config
 
