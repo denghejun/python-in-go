@@ -23,10 +23,13 @@ func main() {
 
 	// init args, if no any args needed, please give a "python.PyTuple_New(0)"
 	args := python.PyTuple_New(1) // 1 arg
-	name := python.PyString_FromString("Tom")
-	python.PyTuple_SetItem(args, 0, name)
+	name_mock := python.PyString_FromString("Tom")
+	python.PyTuple_SetItem(args, 0, name_mock)
 
 	// get the return value
 	result := helloFunc.Call(args, python.PyDict_New())
-	fmt.Println("The result from Python is : ", result)
+	name := python.PyDict_GetItemString(result, "name")
+	age := python.PyDict_GetItemString(result, "age")
+	//x := python.PyDict_GetItem(result, (python.PyList_GetItem(python.PyDict_Keys(result),0)));
+	fmt.Printf("The result from Python is : { name: %v, age: %v}", name, age)
 }

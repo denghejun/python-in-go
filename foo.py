@@ -2,4 +2,7 @@ def hello(name):
     """
     Print hello world for fun and profit.
     """
-    return "hello, world! " + name
+    d = dict();
+    d['name'] = "Hi, " + name
+    d['age'] = 50
+    return d
