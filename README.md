@@ -2,6 +2,10 @@
 What this repo try to explain
 - How to call python code in golang
 - How to call python distribution in golang
+  
+
+  Reference doc about python in go
+  https://www.datadoghq.com/blog/engineering/cgo-and-python/
 
 #### 1. install pkg-config
 
@@ -34,8 +38,6 @@ PYTHONPATH=. ./main
 
 
 #### 5. A way to run python3 distribution
-Reference doc about python in go
-https://www.datadoghq.com/blog/engineering/cgo-and-python/
 ##### 1. build python distribution
 ```
 python3 setup.py sdist
