@@ -26,3 +26,17 @@ will be able to find the foo.py module. From a shell, the command would look lik
 ```
 PYTHONPATH=. ./main
 ```
+
+
+
+
+#### 5. Others
+##### 1. build python distribution
+```
+python3 setup.py sdist
+```
+##### 2. specify the python distribution path while runing go exec file
+```
+PYTHONPATH=./dist/foo-1.0.0 ./main 
+```
+
