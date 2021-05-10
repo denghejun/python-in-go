@@ -7,7 +7,7 @@ brew install pkg-config
 ```
 
 #### 2. setup env PKG_CONFIG_PATH
-
+You also can run this command in the terminal directly.
 ```
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/System/Library/Frameworks/Python.framework/Versions/2.7/lib/pkgconfig
 ```
