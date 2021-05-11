@@ -1,4 +1,6 @@
 ## How to embed python in golang (MacOS as an example)
+Python3 and Golang are quited before we do this experiment.
+
 What this repo try to explain
 - How to call python code in golang
 - How to call python distribution in golang
@@ -6,6 +8,8 @@ What this repo try to explain
 
 Reference doc about python in go
 https://www.datadoghq.com/blog/engineering/cgo-and-python/
+
+
 
 #### 1. install pkg-config
 
