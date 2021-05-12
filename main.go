@@ -1,35 +1,46 @@
-//package go_python
-// main.go
 package main
 
 import (
 	"fmt"
-	"github.com/sbinet/go-python"
+	"github.com/DataDog/go-python3"
 )
 
-func main() {
-	python.Initialize()
-	defer python.Finalize()
+type User struct {
+	name string
+	age  int
+}
 
-	fooModule := python.PyImport_ImportModule("foo")
+func main() {
+	// 1. Init python and load module 'foo'
+	python3.Py_Initialize()
+	defer python3.Py_Finalize()
+	fooModule := python3.PyImport_ImportModule("package_a.foo") // "{package.module} = {directroy.py_filename}"
 	if fooModule == nil {
 		panic("Error importing module")
 	}
 
+	// 2. Get the callable function 'hello' from python module 'foo'
 	helloFunc := fooModule.GetAttrString("hello")
+
 	if helloFunc == nil {
 		panic("Error importing function")
 	}
 
-	// init args, if no any args needed, please give a "python.PyTuple_New(0)"
-	args := python.PyTuple_New(1) // 1 arg
-	name_mock := python.PyString_FromString("Tom")
-	python.PyTuple_SetItem(args, 0, name_mock)
+	// 3. Prepare parameters (if no any args needed, please give a "python3.PyTuple_New(0)")
+	args := python3.PyTuple_New(2) // 2 args
+	paramName := python3.PyUnicode_FromString("Leo")
+	paramAge := python3.PyLong_FromGoInt(99)
+	python3.PyTuple_SetItem(args, 0, paramName)
+	python3.PyTuple_SetItem(args, 1, paramAge)
 
-	// get the return value
-	result := helloFunc.Call(args, python.PyDict_New())
-	name := python.PyDict_GetItemString(result, "name")
-	age := python.PyDict_GetItemString(result, "age")
-	//x := python.PyDict_GetItem(result, (python.PyList_GetItem(python.PyDict_Keys(result),0)));
-	fmt.Printf("The result from Python is : { name: %v, age: %v}", name, age)
+	// 4. Call Python function
+	result := helloFunc.Call(args, python3.Py_None)
+
+	// 5. Receive the result to Golang
+	user := User{
+		name: python3.PyUnicode_AsUTF8(python3.PyDict_GetItemString(result, "name")),
+		age:  python3.PyLong_AsLong(python3.PyDict_GetItemString(result, "age")),
+	}
+
+	fmt.Printf("The result from Python is : { name: %v, age: %v}", user.name, user.age)
 }

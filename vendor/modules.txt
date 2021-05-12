@@ -1,3 +1,5 @@
-# github.com/sbinet/go-python v0.1.0
+# github.com/DataDog/go-python3 v0.0.0-20191126174558-6ed25e33b3c4
 ## explicit
-github.com/sbinet/go-python
+github.com/DataDog/go-python3
+# github.com/stretchr/testify v1.7.0
+## explicit
