@@ -25,14 +25,17 @@ We assume the situation is :
 
 So that we can do the following steps:
 
-- Update the `python-model` docker image version number in file: 
+- Update the `python-model` docker image version number in file:
     - /docker/go/Dockerfile (e.g.: python-model:v1.0.1)
 - Update golang code if needed
-- Build `golang-app` by running in
-  terminal
-    - `docker build --no-cache --progress=plain -t golang_server:v1.0.1 -f docker/go/Dockerfile .`
+- Build `golang-app` by running in terminal
+    - ```
+      docker build --no-cache --progress=plain -t golang_server:v1.0.1 -f docker/go/Dockerfile .
+      ```
 - Checking if the changes have been applied or not
-    - `docker run golang_server:v1.0.1`
+    - ```
+      docker run golang_server:v1.0.1
+      ```
 
 ## Reference docs
 
