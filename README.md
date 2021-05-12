@@ -21,7 +21,7 @@ We assume the situation is :
 
 - `python-model` repo already did some changes, built and published a docker image named `python-model:v1.0.1` into
   docker registry.
-- We need to change `go-app` also to apply the changes from `python-model`.
+- We need to change the code of `go-app` to apply the changes from `python-model`.
 
 So that we can do the following steps:
 
