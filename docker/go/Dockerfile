@@ -1,7 +1,6 @@
 # **********************
 # docker build --no-cache --progress=plain -t golang_server:v1.0.1 -f docker/go/Dockerfile .
-# docker build --build-arg PYTHON_MODEL_IMAGE=python-model:v1.0.1 --no-cache --progress=plain -t golang_server:v1.0.1 -f docker/go/Dockerfile .
-# docker build --progress=plain -t golang_server:v1.0.1 -f docker/go/Dockerfile .
+# docker build --build-arg PYTHON_MODEL_IMAGE=python-model:v1.0.1 --build-arg PYTHON_DIST_FOLDER=/build/__dist__/ --build-arg PYTHON_DIST_FILE_NAME=python-model.tar.gz --no-cache --progress=plain -t golang_server:v1.0.1 -f docker/go/Dockerfile .
 # docker run golang_server:v1.0.1
 # **********************
 # 0. Args while docker build
@@ -17,8 +16,9 @@ RUN go build -ldflags '-w -s' -o server
 
 # 2. Get python-model dist
 FROM alpine:3.11 as get_python_model_dist
-ENV PYTHON_DIST_FILE_NAME='python-model-1.0.1.tar.gz'
-ENV PYTHON_DIST_FILE_IN_PYTHON_MODEL_IMAGE=/build/__dist__/${PYTHON_DIST_FILE_NAME}
+ARG PYTHON_DIST_FOLDER=/build/__dist__/
+ARG PYTHON_DIST_FILE_NAME='python-model.tar.gz'
+ENV PYTHON_DIST_FILE_IN_PYTHON_MODEL_IMAGE=${PYTHON_DIST_FOLDER}/${PYTHON_DIST_FILE_NAME}
 ENV PYTHONPATH=/build/pythonsrc/
 COPY --from=PYTHON_MODEL_IMAGE ${PYTHON_DIST_FILE_IN_PYTHON_MODEL_IMAGE} ${PYTHONPATH}
 WORKDIR ${PYTHONPATH}
