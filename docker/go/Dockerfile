@@ -1,8 +1,13 @@
 # **********************
 # docker build --no-cache --progress=plain -t golang_server:v1.0.1 -f docker/go/Dockerfile .
+# docker build --build-arg PYTHON_MODEL_IMAGE=python-model:v1.0.1 --no-cache --progress=plain -t golang_server:v1.0.1 -f docker/go/Dockerfile .
 # docker build --progress=plain -t golang_server:v1.0.1 -f docker/go/Dockerfile .
 # docker run golang_server:v1.0.1
 # **********************
+# 0. Args while docker build
+ARG PYTHON_MODEL_IMAGE=python-model:v1.0.1
+FROM ${PYTHON_MODEL_IMAGE} as PYTHON_MODEL_IMAGE
+
 # 1. Build Golang Application
 FROM golang:1.16.4 as build_go_app
 COPY . /build
@@ -15,7 +20,7 @@ FROM alpine:3.11 as get_python_model_dist
 ENV PYTHON_DIST_FILE_NAME='python-model-1.0.1.tar.gz'
 ENV PYTHON_DIST_FILE_IN_PYTHON_MODEL_IMAGE=/build/__dist__/${PYTHON_DIST_FILE_NAME}
 ENV PYTHONPATH=/build/pythonsrc/
-COPY --from=python-model:v1.0.1 ${PYTHON_DIST_FILE_IN_PYTHON_MODEL_IMAGE} ${PYTHONPATH}
+COPY --from=PYTHON_MODEL_IMAGE ${PYTHON_DIST_FILE_IN_PYTHON_MODEL_IMAGE} ${PYTHONPATH}
 WORKDIR ${PYTHONPATH}
 RUN tar -xzvf ${PYTHON_DIST_FILE_NAME} --strip-components 1 -C .
 
